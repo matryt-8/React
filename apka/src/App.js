@@ -4,6 +4,7 @@ import axios from "axios";
 import Nav from "./Nav";
 import Movies from "./Movies/Movies";
 import Screenings from "./Screenings/Screenings";
+import AddScreening from "./Screenings/AddScreening";
 import './Styles/App.css';
 
 axios.defaults.baseURL = "http://localhost:7777/";
@@ -48,14 +49,14 @@ class App extends Component{
 
   addScreening = (data) =>{
     var body = {
-      "id": data.id,
+      "id": 0,
       "date": data.date,
       "hour": data.hour,
       "movie": data.movie,
       "room": data.room,
-      "sold tickets": data.soldtickets,
-      "free tickets": data.freetickets,
-      "taken seats": data.takenseats
+      "sold_tickets": 0,
+      "free_tickets": 0,
+      "taken_seats": []
     }
 
     axios.post("screenings", body)
@@ -88,6 +89,7 @@ class App extends Component{
           <Route exact path="/" render={() => <h1 className="App">Home</h1>} />
           <Route exact path="/movies" render={() => <Movies/>}/>
           <Route exact path="/screenings" render={() => <Screenings/>}/>
+          <Route exact path="/addscreening" render={() => <AddScreening onSubmit={this.addScreening}/>}/>
         </Router>
       </div>
     );
