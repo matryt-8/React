@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "title": "Spiderman",
+        "duration": 2.4
+    },
+    {
+        "id": 2,
+        "title": "Romeo i Julia",
+        "duration": 3
+    }
+]
