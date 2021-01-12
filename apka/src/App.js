@@ -3,10 +3,10 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 import Nav from "./Nav";
 import Movies from "./Movies/Movies";
-import EditMovie from "./Movies/EditMovie";
 import Screenings from "./Screenings/Screenings";
+import EditMovie from "./Movies/EditMovie";
+import AddMovie from "./Movies/AddMovie";
 import AddScreening from "./Screenings/AddScreening";
-import EditScreening from "./Screenings/EditScreening";
 import './Styles/App.css';
 
 axios.defaults.baseURL = "http://localhost:7777/";
@@ -20,7 +20,7 @@ class App extends Component{
 
   addMovie = (data) =>{
     var body = {
-      "id": data.id,
+      "id": 0,
       "title": data.title,
       "duration": data.duration
     }
@@ -66,20 +66,19 @@ class App extends Component{
       .catch((error) => console.log(error));
   }
 
-  editScreening = (screening,data) =>{
-
+  editScreening = (data) =>{
     var body = {
-      "id": screening.id,
+      "id": data.id,
       "date": data.date,
       "hour": data.hour,
       "movie": data.movie,
       "room": data.room,
-      "sold_tickets": screening.sold_tickets,
-      "free_tickets": screening.free_tickets,
-      "taken_seats": screening.taken_seats
+      "sold tickets": data.soldtickets,
+      "free tickets": data.freetickets,
+      "taken seats": data.takenseats
     }
 
-    axios.put("screenings/"+ body.id, body)
+    axios.put("screenings"+ body.id, body)
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
   }
@@ -91,10 +90,10 @@ class App extends Component{
         <Router>
           <Route exact path="/" render={() => <h1 className="App">Home</h1>} />
           <Route exact path="/movies" render={() => <Movies deleteMovie={this.deleteMovie}/>}/>
-          <Route exact path="/editmovie/:id" render={({match}) => <EditMovie id={match.params.id} editMovie={this.editMovie}/>}/>
           <Route exact path="/screenings" render={() => <Screenings/>}/>
+          <Route exact path="/editmovie/:id" render={({match}) => <EditMovie id={match.params.id} editMovie={this.editMovie}/>}/>
+          <Route exact path="/addmovie" render={() => <AddMovie addMovie={this.addMovie}/>}/>
           <Route exact path="/addscreening" render={() => <AddScreening onSubmit={this.addScreening}/>}/>
-          <Route exact path="/editscreening/:id" render={({match}) => <EditScreening id={match.params.id} onSubmit={this.editScreening}/>}/>
         </Router>
       </div>
     );

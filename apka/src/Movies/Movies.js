@@ -30,10 +30,13 @@ class Movies extends Component {
       })
   }
 
-  onClick = (id) => {
+  deleteClick = (id) => {
       this.props.deleteMovie(id);
      this.getMovies();
   }
+
+  
+
 
   render(){
     let movies = this.state.MoviesList;
@@ -59,13 +62,14 @@ class Movies extends Component {
                   <a href={"/editmovie/"+x.id}>Edytuj</a>
                 </td>
                 <td>
-                <button onClick={this.onClick.bind(this, x.id)}>Usuń</button>
+                <button onClick={this.deleteClick.bind(this, x.id)}>Usuń</button>
                 </td>
               </tr>
             )})
           }
           </tbody>
         </table>
+        <button><a href={"/addmovie/"}>Dodaj</a></button>
       </div>
     );
   }
