@@ -5,6 +5,7 @@ import Nav from "./Nav";
 import Movies from "./Movies/Movies";
 import Screenings from "./Screenings/Screenings";
 import AddScreening from "./Screenings/AddScreening";
+import EditScreening from "./Screenings/EditScreening";
 import './Styles/App.css';
 
 axios.defaults.baseURL = "http://localhost:7777/";
@@ -64,19 +65,20 @@ class App extends Component{
       .catch((error) => console.log(error));
   }
 
-  editScreening = (data) =>{
+  editScreening = (screening,data) =>{
+
     var body = {
-      "id": data.id,
+      "id": screening.id,
       "date": data.date,
       "hour": data.hour,
       "movie": data.movie,
       "room": data.room,
-      "sold tickets": data.soldtickets,
-      "free tickets": data.freetickets,
-      "taken seats": data.takenseats
+      "sold_tickets": screening.sold_tickets,
+      "free_tickets": screening.free_tickets,
+      "taken_seats": screening.taken_seats
     }
 
-    axios.put("screenings"+ body.id, body)
+    axios.put("screenings/"+ body.id, body)
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
   }
@@ -90,6 +92,7 @@ class App extends Component{
           <Route exact path="/movies" render={() => <Movies/>}/>
           <Route exact path="/screenings" render={() => <Screenings/>}/>
           <Route exact path="/addscreening" render={() => <AddScreening onSubmit={this.addScreening}/>}/>
+          <Route exact path="/editscreening/:id" render={({match}) => <EditScreening id={match.params.id} onSubmit={this.editScreening}/>}/>
         </Router>
       </div>
     );

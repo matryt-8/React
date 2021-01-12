@@ -58,7 +58,7 @@ class Screenings extends Component {
                     return(<p key={key} className="p">{nr +", "}</p>)
                   })}
                 </td>
-                <td>Edytuj</td>
+                <td><a href={"/editscreening/"+x.id}>Edytuj</a></td>
                 <td>Usuń</td>
               </tr>
             )})

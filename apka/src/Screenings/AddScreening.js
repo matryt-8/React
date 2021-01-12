@@ -39,7 +39,6 @@ class AddScreening extends Component {
     }
 
     render(){
-        console.log("redirect",this.state.redirect)
         if(this.state.redirect === true)
         {
             return <Redirect to="/screenings"/>
