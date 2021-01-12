@@ -18,7 +18,6 @@ class Movies extends Component {
   }
 
    async getMovies () {
-    console.log("aaaaaaaa")
      axios.get("/movies")
       .then((response)=>{
         console.log("response",response.data);
