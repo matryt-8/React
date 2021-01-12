@@ -17,8 +17,9 @@ class Movies extends Component {
     this.getMovies();
   }
 
-  getMovies = () => {
-    axios.get("/movies")
+   async getMovies () {
+    console.log("aaaaaaaa")
+     axios.get("/movies")
       .then((response)=>{
         console.log("response",response.data);
         this.setState({
@@ -32,7 +33,7 @@ class Movies extends Component {
 
   onClick = (id) => {
       this.props.deleteMovie(id);
-      this.getMovies();
+     this.getMovies();
   }
 
   render(){
