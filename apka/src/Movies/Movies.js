@@ -14,6 +14,10 @@ class Movies extends Component {
   }
 
   componentDidMount = () => {
+    this.getMovies();
+  }
+
+  getMovies = () => {
     axios.get("/movies")
       .then((response)=>{
         console.log("response",response.data);
@@ -26,6 +30,11 @@ class Movies extends Component {
       })
   }
 
+  onClick = (id) => {
+      this.props.deleteMovie(id);
+      this.getMovies();
+  }
+
   render(){
     let movies = this.state.MoviesList;
     return(
@@ -35,7 +44,7 @@ class Movies extends Component {
           <tbody>
           <tr>
             <th>Tytuł</th>
-            <th>Czas trwania</th>
+            <th>Czas trwania (h)</th>
             <th>Opis</th>
             <th></th>
             <th></th>
@@ -46,8 +55,12 @@ class Movies extends Component {
                 <td>{x.title}</td>
                 <td>{x.duration}</td>
                 <td>brak opisu</td>
-                <td>Edytuj</td>
-                <td>Usuń</td>
+                <td>
+                  <a href={"/editmovie/"+x.id}>Edytuj</a>
+                </td>
+                <td>
+                <button onClick={this.onClick.bind(this, x.id)}>Usuń</button>
+                </td>
               </tr>
             )})
           }

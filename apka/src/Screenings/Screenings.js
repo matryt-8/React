@@ -66,7 +66,7 @@ class Screenings extends Component {
           </tbody>
         </table>
         <a href="/addscreening">
-          <button className="button">Dodaj</button>
+          <button className="App-button">Dodaj</button>
         </a>
       </div>
     );

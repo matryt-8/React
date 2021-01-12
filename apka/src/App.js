@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 import Nav from "./Nav";
 import Movies from "./Movies/Movies";
+import EditMovie from "./Movies/EditMovie";
 import Screenings from "./Screenings/Screenings";
 import AddScreening from "./Screenings/AddScreening";
 import EditScreening from "./Screenings/EditScreening";
@@ -89,7 +90,8 @@ class App extends Component{
         <Nav/>
         <Router>
           <Route exact path="/" render={() => <h1 className="App">Home</h1>} />
-          <Route exact path="/movies" render={() => <Movies/>}/>
+          <Route exact path="/movies" render={() => <Movies deleteMovie={this.deleteMovie}/>}/>
+          <Route exact path="/editmovie/:id" render={({match}) => <EditMovie id={match.params.id} editMovie={this.editMovie}/>}/>
           <Route exact path="/screenings" render={() => <Screenings/>}/>
           <Route exact path="/addscreening" render={() => <AddScreening onSubmit={this.addScreening}/>}/>
           <Route exact path="/editscreening/:id" render={({match}) => <EditScreening id={match.params.id} onSubmit={this.editScreening}/>}/>

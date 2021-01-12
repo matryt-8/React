@@ -75,7 +75,7 @@ class EditScreening extends Component {
                 <p><input className="s-input" id="movie" onChange={this.onChange}/></p>
                 <p><label className="s-label">Sala</label></p>
                 <p><input className="s-input" id="room" onChange={this.onChange}/></p>
-                <button className="button" onClick={this.onClick}>Zatwierdź</button>
+                <button className="App-button" onClick={this.onClick}>Zatwierdź</button>
             </div>
         );
     }
