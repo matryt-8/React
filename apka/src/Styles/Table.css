@@ -1,4 +1,5 @@
 table, th, td {
+    font-size: 20px;
     border: 1px solid black;
     border-collapse: collapse;
     padding: 5px;
@@ -6,13 +7,21 @@ table, th, td {
 }
 
 tbody{
+    font-size: 20px;
     border: 1px solid black;
     border-collapse: collapse;
     padding: 5px;
 }
 
 .table{
+    width: 90%;
+    font-size: 20px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+
+.p{
+    font-size: 20px;
+    display: inline;
 }

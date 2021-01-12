@@ -4,7 +4,11 @@ import axios from "axios";
 import Nav from "./Nav";
 import Movies from "./Movies/Movies";
 import Screenings from "./Screenings/Screenings";
+<<<<<<< HEAD
 import EditMovie from "./Movies/EditMovie";
+=======
+import AddScreening from "./Screenings/AddScreening";
+>>>>>>> 7e686e90113b397abbf62d384265a4662ec5caed
 import './Styles/App.css';
 
 axios.defaults.baseURL = "http://localhost:7777/";
@@ -49,14 +53,14 @@ class App extends Component{
 
   addScreening = (data) =>{
     var body = {
-      "id": data.id,
+      "id": 0,
       "date": data.date,
       "hour": data.hour,
       "movie": data.movie,
       "room": data.room,
-      "sold tickets": data.soldtickets,
-      "free tickets": data.freetickets,
-      "taken seats": data.takenseats
+      "sold_tickets": 0,
+      "free_tickets": 0,
+      "taken_seats": []
     }
 
     axios.post("screenings", body)
@@ -89,7 +93,11 @@ class App extends Component{
           <Route exact path="/" render={() => <h1 className="App">Home</h1>} />
           <Route exact path="/movies" render={() => <Movies deleteMovie={this.deleteMovie}/>}/>
           <Route exact path="/screenings" render={() => <Screenings/>}/>
+<<<<<<< HEAD
           <Route exact path="/editmovie/:id" render={({match}) => <EditMovie id={match.params.id} editMovie={this.editMovie}/>}/>
+=======
+          <Route exact path="/addscreening" render={() => <AddScreening onSubmit={this.addScreening}/>}/>
+>>>>>>> 7e686e90113b397abbf62d384265a4662ec5caed
         </Router>
       </div>
     );

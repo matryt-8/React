@@ -1,13 +1,13 @@
 [
     {
-        "id":1,
-        "date": "20.01.2020",
-        "hour": "20.45",
+        "id": 1,
+        "date": "2021-01-20",
+        "hour": "20:45",
         "movie": 1,
         "room": 1,
-        "sold tickets": 24,
-        "free tickets": 76,
-        "taken seats": [
+        "sold_tickets": 24,
+        "free_tickets": 76,
+        "taken_seats": [
             1,
             2,
             3,
@@ -36,13 +36,13 @@
     },
     {
         "id": 2,
-        "date": "22.01.2020",
-        "hour": "16.00",
+        "date": "2021-01-25",
+        "hour": "16:00",
         "movie": 2,
         "room": 2,
-        "sold tickets": 6,
-        "free tickets": 44,
-        "taken seats": [
+        "sold_tickets": 6,
+        "free_tickets": 44,
+        "taken_seats": [
             1,
             2,
             3,
