@@ -1,7 +1,10 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
-import './App.css';
+import Nav from "./Nav";
+import Movies from "./Movies/Movies";
+import Screenings from "./Screenings/Screenings";
+import './Styles/App.css';
 
 axios.defaults.baseURL = "http://localhost:7777/";
 
@@ -37,7 +40,7 @@ class App extends Component{
   }
 
   deleteMovie = (id) =>{
-    
+
     axios.delete("movies/"+id)
     .then((response) => console.log(response))
     .catch((error) => console.log(error));
@@ -80,9 +83,11 @@ class App extends Component{
   render(){
     return (
       <div>
-        {/* <nav>Navbar</nav> */}
+        <Nav/>
         <Router>
           <Route exact path="/" render={() => <h1 className="App">Home</h1>} />
+          <Route exact path="/movies" render={() => <Movies/>}/>
+          <Route exact path="/screenings" render={() => <Screenings/>}/>
         </Router>
       </div>
     );
