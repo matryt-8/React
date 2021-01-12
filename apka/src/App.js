@@ -4,6 +4,7 @@ import axios from "axios";
 import Nav from "./Nav";
 import Movies from "./Movies/Movies";
 import Screenings from "./Screenings/Screenings";
+import EditMovie from "./Movies/EditMovie";
 import './Styles/App.css';
 
 axios.defaults.baseURL = "http://localhost:7777/";
@@ -86,8 +87,9 @@ class App extends Component{
         <Nav/>
         <Router>
           <Route exact path="/" render={() => <h1 className="App">Home</h1>} />
-          <Route exact path="/movies" render={() => <Movies/>}/>
+          <Route exact path="/movies" render={() => <Movies deleteMovie={this.deleteMovie}/>}/>
           <Route exact path="/screenings" render={() => <Screenings/>}/>
+          <Route exact path="/editmovie/:id" render={({match}) => <EditMovie id={match.params.id} editMovie={this.editMovie}/>}/>
         </Router>
       </div>
     );
