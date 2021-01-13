@@ -17,6 +17,9 @@ class App extends Component{
     super(props);
     this.state = {
     };
+    // bindowanie funkcji asynchronicznych
+    this.addScreening = this.addScreening.bind(this);
+    this.editScreening = this.editScreening.bind(this);
   }
 
   addMovie = (data) =>{
@@ -50,7 +53,7 @@ class App extends Component{
     .catch((error) => console.log(error));
   }
 
-  addScreening = (data) =>{
+  async addScreening (data){
     var body = {
       "id": 0,
       "date": data.date,
@@ -62,12 +65,12 @@ class App extends Component{
       "taken_seats": []
     }
 
-    axios.post("screenings", body)
+    await axios.post("screenings", body)
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
   }
 
-  editScreening = (screening, data) =>{
+  async editScreening(screening, data){
     var body = {
       "id": screening.id,
       "date": data.date,
@@ -79,7 +82,7 @@ class App extends Component{
       "taken_seats": screening.taken_seats
     }
 
-    axios.put("screenings/"+ body.id, body)
+    await axios.put("screenings/"+ body.id, body)
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
   }
@@ -101,7 +104,7 @@ class App extends Component{
           <Route exact path="/addmovie" render={() => <AddMovie addMovie={this.addMovie}/>}/>
           <Route exact path="/screenings" render={() => <Screenings delete={this.deleteScreening}/>}/>
           <Route exact path="/addscreening" render={() => <AddScreening onSubmit={this.addScreening}/>}/>
-          <Route exact path="/editscreening/:id" render={({match}) => <EditScreening id={match.params.id} onSubmit={this.editScreening}/>}/>
+          <Route exact path="/editscreening/:id" render={({match}) => <EditScreening id={parseInt(match.params.id)} onSubmit={this.editScreening}/>}/>
         </Router>
       </div>
     );

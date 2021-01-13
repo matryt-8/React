@@ -19,10 +19,12 @@ class EditScreening extends Component {
             RoomsList: [],
             MoviesList: []
         };
+        // bindowanie funkcji asynchronicznych
+        this.onClick = this.onClick.bind(this);
     }
 
-    componentDidMount = () => {
-        axios.get("/screening/"+this.props.id)
+    async componentDidMount () {
+        await axios.get("/screening/"+this.props.id)
             .then((response)=>{
                 console.log("response",response.data);
                 this.setState({
@@ -32,16 +34,12 @@ class EditScreening extends Component {
                     movie: response.data.movie,
                     room: response.data.room
                 })
-                document.getElementById("date").value = response.data.date;
-                document.getElementById("hour").value = response.data.hour;
-                document.getElementById("movie").value = response.data.movie;
-                document.getElementById("room").value = response.data.room;
             })
             .catch((error)=>{
                 console.log("error",error);
             })
 
-        axios.get("/rooms")
+        await axios.get("/rooms")
         .then((response)=>{
         this.setState({
             RoomsList: response.data
@@ -51,26 +49,34 @@ class EditScreening extends Component {
         console.log("error",error)
         })
 
-        axios.get("/movies")
+        await axios.get("/movies")
             .then((response)=>{
-            this.setState({
-                MoviesList: response.data
-            })
+                this.setState({
+                    MoviesList: response.data
+                })
             })
             .catch((error)=>{
-            console.log("error",error)
-            })
+                console.log("error",error)
+        })
+
+        this.setDefaultValues();
     }
 
-    onClick = () =>
-    {
+    setDefaultValues = () =>{
+        document.getElementById("date").value = this.state.date;
+        document.getElementById("hour").value = this.state.hour;
+        document.getElementById("movie").value = this.state.movie;
+        document.getElementById("room").value = this.state.room;
+    }
+
+    async onClick() {
         var data={
             date: this.state.date,
             hour: this.state.hour,
             movie: parseInt(this.state.movie),
             room: parseInt(this.state.room)
         }
-        this.props.onSubmit(this.state.screening,data);
+        await this.props.onSubmit(this.state.screening,data);
         this.setState({
             redirect: true
         });

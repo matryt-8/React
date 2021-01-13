@@ -15,6 +15,7 @@ class Screenings extends Component {
   }
 
   componentDidMount = () => {
+    console.log("componentDidMount");
     axios.get("/screenings")
       .then((response)=>{
         this.setState({

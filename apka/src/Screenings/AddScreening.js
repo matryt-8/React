@@ -17,6 +17,8 @@ class AddScreening extends Component {
             RoomsList: [],
             MoviesList: []
         };
+        // bindowanie funkcji asynchronicznych
+        this.onClick = this.onClick.bind(this);
     }
 
     componentDidMount = () =>{
@@ -62,8 +64,7 @@ class AddScreening extends Component {
         return flag;
     }
 
-    onClick = () =>
-    {
+    async onClick() {
         if(this.validateInputs() === false)
         {
             return;
@@ -76,7 +77,7 @@ class AddScreening extends Component {
             room: parseInt(this.state.room)
         }
         console.log("data",data);
-        this.props.onSubmit(data);
+        await this.props.onSubmit(data);
         this.setState({
             redirect: true
         });
