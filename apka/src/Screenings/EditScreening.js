@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
 import axios from "axios";
 import "../Styles/Screenings.css";
 
@@ -90,7 +91,7 @@ class EditScreening extends Component {
         let movies = this.state.MoviesList;
         return(
             <div className="s-div">
-                <h1>Dodawanie seansu</h1>
+                <h1>Edycja seansu</h1>
                 <p><label className="s-label">Data</label></p>
                 <p><input className="s-input" id="date" type="date" onChange={this.onChange}/></p>
                 <p><label className="s-label">Godzina</label></p>
@@ -121,3 +122,7 @@ class EditScreening extends Component {
     }
 }
 export default EditScreening;
+
+EditScreening.propTypes ={
+    id: PropTypes.number.isRequired
+}

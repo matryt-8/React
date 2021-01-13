@@ -9,7 +9,8 @@ class Screenings extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      ScreeningsList: []
+      ScreeningsList: [],
+      MoviesList: []
     };
   }
 
@@ -23,6 +24,16 @@ class Screenings extends Component {
       .catch((error)=>{
         console.log("error",error)
       })
+
+      axios.get("/movies")
+      .then((response)=>{
+        this.setState({
+            MoviesList: response.data
+        })
+      })
+      .catch((error)=>{
+        console.log("error",error)
+      })
   }
 
   onDelete = (id) =>{
@@ -31,6 +42,7 @@ class Screenings extends Component {
 
   render(){
     let screenings = this.state.ScreeningsList;
+    let movies = this.state.MoviesList;
     return(
       <div className="App">
         <h1>Seanse</h1>
@@ -51,7 +63,11 @@ class Screenings extends Component {
               <tr key={key}>
                 <td>{x.date}</td>
                 <td>{x.hour}</td>
-                <td>{x.movie}</td>
+                {movies.map((e)=>{
+                  if(x.movie === e.id)
+                    return(<td key={e.id}>{e.title}</td>);
+                  return null;
+                })}
                 <td>{x.room}</td>
                 <td>{x.free_tickets}</td>
                 <td>{x.taken_seats.map((nr,key)=>{
