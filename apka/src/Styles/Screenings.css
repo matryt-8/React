@@ -10,3 +10,11 @@
     font-size: 20px;
     width: 180px;
 }
+
+.s-span{
+    display: block;
+}
+
+.s-alert{
+    color: red;
+}

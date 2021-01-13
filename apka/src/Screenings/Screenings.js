@@ -16,7 +16,6 @@ class Screenings extends Component {
   componentDidMount = () => {
     axios.get("/screenings")
       .then((response)=>{
-        console.log("response",response.data);
         this.setState({
           ScreeningsList: response.data
         })

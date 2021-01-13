@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 import Nav from "./Nav";
 import Movies from "./Movies/Movies";
-import Screenings from "./Screenings/Screenings";
-import EditMovie from "./Movies/EditMovie";
 import AddMovie from "./Movies/AddMovie";
+import EditMovie from "./Movies/EditMovie";
+import Screenings from "./Screenings/Screenings";
 import AddScreening from "./Screenings/AddScreening";
+import EditScreening from "./Screenings/EditScreening";
 import './Styles/App.css';
 
 axios.defaults.baseURL = "http://localhost:7777/";
@@ -94,6 +95,7 @@ class App extends Component{
           <Route exact path="/editmovie/:id" render={({match}) => <EditMovie id={match.params.id} editMovie={this.editMovie}/>}/>
           <Route exact path="/addmovie" render={() => <AddMovie addMovie={this.addMovie}/>}/>
           <Route exact path="/addscreening" render={() => <AddScreening onSubmit={this.addScreening}/>}/>
+          <Route exact path="/editscreening/:id" render={({match}) => <EditScreening id={match.params.id} onSubmit={this.editScreening}/>}/>
         </Router>
       </div>
     );

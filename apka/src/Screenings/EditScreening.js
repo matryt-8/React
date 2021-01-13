@@ -15,6 +15,8 @@ class EditScreening extends Component {
             hour: new Date().getHours(),
             movie: 0,
             room: 0,
+            RoomsList: [],
+            MoviesList: []
         };
     }
 
@@ -36,6 +38,26 @@ class EditScreening extends Component {
             })
             .catch((error)=>{
                 console.log("error",error);
+            })
+
+        axios.get("/rooms")
+        .then((response)=>{
+        this.setState({
+            RoomsList: response.data
+        })
+        })
+        .catch((error)=>{
+        console.log("error",error)
+        })
+
+        axios.get("/movies")
+            .then((response)=>{
+            this.setState({
+                MoviesList: response.data
+            })
+            })
+            .catch((error)=>{
+            console.log("error",error)
             })
     }
 
@@ -64,6 +86,8 @@ class EditScreening extends Component {
         {
             return <Redirect to="/screenings"/>
         }
+        let rooms = this.state.RoomsList;
+        let movies = this.state.MoviesList;
         return(
             <div className="s-div">
                 <h1>Dodawanie seansu</h1>
@@ -72,9 +96,25 @@ class EditScreening extends Component {
                 <p><label className="s-label">Godzina</label></p>
                 <p><input className="s-input" id="hour" type="time" onChange={this.onChange}/></p>
                 <p><label className="s-label">Film</label></p>
-                <p><input className="s-input" id="movie" onChange={this.onChange}/></p>
+                <p>
+                    <select className="s-input" id="movie" onChange={this.onChange}>
+                        {movies.map((e)=>{
+                            return(
+                                <option key={e.id} value={e.id}>{e.title}</option>
+                            )}
+                        )}
+                    </select>
+                </p>
                 <p><label className="s-label">Sala</label></p>
-                <p><input className="s-input" id="room" onChange={this.onChange}/></p>
+                <p>
+                    <select className="s-input" id="room" onChange={this.onChange}>
+                        {rooms.map((e)=>{
+                            return(
+                                <option key={e.nr} value={e.nr}>{e.nr +" ("+e.capacity+")"}</option>
+                            )}
+                        )}
+                    </select>
+                </p>
                 <button className="App-button" onClick={this.onClick}>Zatwierdź</button>
             </div>
         );
