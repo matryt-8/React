@@ -25,6 +25,10 @@ class Screenings extends Component {
       })
   }
 
+  onDelete = (id) =>{
+    this.props.delete(id);
+  }
+
   render(){
     let screenings = this.state.ScreeningsList;
     return(
@@ -58,7 +62,7 @@ class Screenings extends Component {
                   })}
                 </td>
                 <td><a href={"/editscreening/"+x.id}>Edytuj</a></td>
-                <td>Usuń</td>
+                <td><a href={"/screenings"} onClick={this.onDelete.bind(this, x.id)}> Usuń</a></td>
               </tr>
             )})
           }
