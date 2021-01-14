@@ -19,10 +19,12 @@ class EditScreening extends Component {
             RoomsList: [],
             MoviesList: []
         };
+        // bindowanie funkcji asynchronicznych
+        this.onClick = this.onClick.bind(this);
     }
 
-    componentDidMount = () => {
-        axios.get("/screening/"+this.props.id)
+    async componentDidMount () {
+        await axios.get("/screening/"+this.props.id)
             .then((response)=>{
                 console.log("response",response.data);
                 this.setState({
@@ -32,16 +34,12 @@ class EditScreening extends Component {
                     movie: response.data.movie,
                     room: response.data.room
                 })
-                document.getElementById("date").value = response.data.date;
-                document.getElementById("hour").value = response.data.hour;
-                document.getElementById("movie").value = response.data.movie;
-                document.getElementById("room").value = response.data.room;
             })
             .catch((error)=>{
                 console.log("error",error);
             })
 
-        axios.get("/rooms")
+        await axios.get("/rooms")
         .then((response)=>{
         this.setState({
             RoomsList: response.data
@@ -51,32 +49,109 @@ class EditScreening extends Component {
         console.log("error",error)
         })
 
-        axios.get("/movies")
+        await axios.get("/movies")
             .then((response)=>{
-            this.setState({
-                MoviesList: response.data
-            })
+                this.setState({
+                    MoviesList: response.data
+                })
             })
             .catch((error)=>{
-            console.log("error",error)
-            })
+                console.log("error",error)
+        })
+
+        this.setDefaultValues();
     }
 
-    onClick = () =>
+    setDefaultValues = () =>{
+        document.getElementById("date").value = this.state.date;
+        document.getElementById("hour").value = this.state.hour;
+        document.getElementById("movie").value = this.state.movie;
+        document.getElementById("room").value = this.state.room;
+    }
+
+    validateInputs = () => {
+        let flag = true;
+        var date = document.getElementById("date").value;
+        if( !this.isDateOK(date) )
+        {
+            flag = false;
+            document.getElementById("date-alert").innerHTML = "data nie może odnosić się do przeszłości";
+        }
+        var hour = document.getElementById("hour").value;
+        if( this.isDateToday(date) && !this.isHourOk(hour)){
+            flag = false;
+            document.getElementById("hour-alert").innerHTML = "data nie może odnosić się do przeszłości";
+        }
+        return flag;
+    }
+
+    isDateOK = (date) =>{
+        var selectedDate = new Date(date);
+        var currentDate = new Date();
+        if(selectedDate.getFullYear() < currentDate.getFullYear())
+            return false;
+        else if(selectedDate.getFullYear() === currentDate.getFullYear())
+        {
+            if(selectedDate.getMonth() < currentDate.getMonth())
+            {
+                return false;
+            }
+            else if(selectedDate.getMonth() === currentDate.getMonth())
+            {
+                if(selectedDate.getDay() < currentDate.getDay())
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    isDateToday = (date) =>
     {
+        var selectedDate = new Date(date);
+        var currentDate = new Date();
+        if(selectedDate.getFullYear() === currentDate.getFullYear() &&
+            selectedDate.getMonth() === currentDate.getMonth() &&
+            selectedDate.getDay() === currentDate.getDay())
+            return true;
+        return false;
+    }
+
+    isHourOk = (hour) =>{
+        var selectedHour = parseInt(hour.substring(0,2));
+        var selectedMinute = parseInt(hour.substring(3));
+        var currentHour = new Date().getHours();
+        var currentMinute = new Date().getMinutes();
+        if(selectedHour < currentHour)
+            return false;
+        if(selectedHour === currentHour && selectedMinute <= currentMinute)
+            return false;
+        return true;
+    }
+
+    async onClick() {
+        if(this.validateInputs() === false)
+        {
+            return;
+        }
+
         var data={
             date: this.state.date,
             hour: this.state.hour,
             movie: parseInt(this.state.movie),
             room: parseInt(this.state.room)
         }
-        this.props.onSubmit(this.state.screening,data);
+        await this.props.onSubmit(this.state.screening,data);
         this.setState({
             redirect: true
         });
     }
 
     onChange = (e) =>{
+        var alert = document.getElementById([e.target.id]+"-alert");
+        if(alert)
+            alert.innerHTML= null;
         this.setState({
             [e.target.id] : e.target.value
         })
@@ -94,8 +169,10 @@ class EditScreening extends Component {
                 <h1>Edycja seansu</h1>
                 <p><label className="s-label">Data</label></p>
                 <p><input className="s-input" id="date" type="date" onChange={this.onChange}/></p>
+                <label className="s-alert" id="date-alert"></label>
                 <p><label className="s-label">Godzina</label></p>
                 <p><input className="s-input" id="hour" type="time" onChange={this.onChange}/></p>
+                <label className="s-alert" id="hour-alert"></label>
                 <p><label className="s-label">Film</label></p>
                 <p>
                     <select className="s-input" id="movie" onChange={this.onChange}>
