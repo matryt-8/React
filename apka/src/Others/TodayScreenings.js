@@ -9,13 +9,9 @@ class Home extends Component {
     constructor(props) {
       super(props);
 
-      var today = new Date();
-      var date = today.getDate() + '-' + (today.getMonth() + 1) + '-' + today.getFullYear();
-
       this.state = {
         MoviesList: [],
         ScreeningsList: [],
-        date: date
       };
     }
 
@@ -50,19 +46,6 @@ class Home extends Component {
          })
      }
 
-     async todayScreenings () {
-        axios.get("/screenings")
-         .then((response)=>{
-           console.log("response",response.data);
-           this.setState({
-             ScreeningsList: response.data
-           })
-         })
-         .catch((error)=>{
-           console.log("error",error)
-         })
-     }
-
      isDateToday = (date) =>
      {
          var selectedDate = new Date(date);
@@ -76,31 +59,36 @@ class Home extends Component {
 
      render(){
         let screenings = this.state.ScreeningsList;
+        let movies = this.state.MoviesList;
         return(
           <div className="App">
             <h1>Seanse</h1>
             <h2>{new Date().toLocaleDateString()}</h2>
-            <table className="table">
+            <table className="t-table">
               <tbody>
-              <tr>
-                <th>Film</th>
-                <th>Sala</th>
-                <th>Data</th>
-                <th>Godzina</th>
-              </tr>
-              {screenings.map((x,key)=>{
-                if(this.isDateToday(x.date)){
-                  return(
-                    <tr key={key}>
-                      <td>{x.movie}</td>
-                      <td>{x.room}</td>
-                      <td>{x.date}</td>
-                      <td>{x.hour}</td>
-                    </tr>
-                  )}
-                return null;
-                })
-              }
+                <tr>
+                  <th>Film</th>
+                  <th>Sala</th>
+                  <th>Data</th>
+                  <th>Godzina</th>
+                </tr>
+                {screenings.map((x,key)=>{
+                  if(this.isDateToday(x.date)){
+                    return(
+                      <tr key={key}>
+                        {movies.map((e)=>{
+                          if(x.movie === e.id)
+                            return(<td key={e.id}>{e.title}</td>);
+                          return null;
+                        })}
+                        <td>{x.room}</td>
+                        <td>{x.date}</td>
+                        <td>{x.hour}</td>
+                      </tr>
+                    )}
+                  return null;
+                  })
+                }
               </tbody>
             </table>
           </div>
