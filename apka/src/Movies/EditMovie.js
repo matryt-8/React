@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import axios from "axios";
 import "../Styles/Table.css";
 import "../Styles/Button.css";
+
 axios.defaults.baseURL = "http://localhost:7777/";
+
 class EditMovie extends Component {
     constructor(props){
         super(props);
@@ -30,11 +32,6 @@ class EditMovie extends Component {
           .catch((error)=>{
             console.log("error",error)
           })
-      }
-
-    editMovie = () => {
-        const editMovieOnServer = this.props.editMovie; //{editProduct}
-        editMovieOnServer(this.state);
     }
 
     onChange = (event) =>

@@ -9,6 +9,7 @@ import Screenings from "./Screenings/Screenings";
 import AddScreening from "./Screenings/AddScreening";
 import EditScreening from "./Screenings/EditScreening";
 import './Styles/App.css';
+import Home from "./Others/TodayScreenings";
 
 axios.defaults.baseURL = "http://localhost:7777/";
 
@@ -95,7 +96,7 @@ class App extends Component{
       <div>
         <Nav/>
         <Router>
-          <Route exact path="/" render={() => <h1 className="App">Home</h1>} />
+          <Route exact path="/" render={() => <Home home={this.home}/>} />
           <Route exact path="/movies" render={() => <Movies deleteMovie={this.deleteMovie}/>}/>
           <Route exact path="/editmovie/:id" render={({match}) => <EditMovie id={match.params.id} editMovie={this.editMovie}/>}/>
           <Route exact path="/addmovie" render={() => <AddMovie addMovie={this.addMovie}/>}/>
