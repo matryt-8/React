@@ -24,7 +24,7 @@ class App extends Component{
     this.buyTicket = this.buyTicket.bind(this);
   }
 
-  async addMovie (data){
+   addMovie = (data)=>{
     var body = {
       "id": 0,
       "title": data.title,
@@ -36,7 +36,7 @@ class App extends Component{
       .catch((error) => console.log(error));
   }
 
-  editMovie = (data) =>{
+   editMovie = (data) =>{
     var body = {
       "id": data.id,
       "title": data.title,

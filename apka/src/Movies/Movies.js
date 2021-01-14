@@ -34,7 +34,7 @@ class Movies extends Component {
     async deleteClick (id) {
     
     await this.props.deleteMovie(id).then(
-     this.getMovies());
+     window.location.reload());
     
   }
 

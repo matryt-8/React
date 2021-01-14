@@ -64,7 +64,7 @@ class EditMovie extends Component {
 
      async editMovieOnServer(newState) {
         const editMovieOnServer = this.props.editMovie;
-         await editMovieOnServer(newState);
+        await editMovieOnServer(newState);
         this.setState({
             redirect: newState.redirect
           });
