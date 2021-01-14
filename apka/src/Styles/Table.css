@@ -1,27 +1,37 @@
-table, th, td {
-    font-size: 20px;
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 5px;
-    /* background-color: #a4cef0; */
-}
-
-tbody{
-    font-size: 20px;
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 5px;
-}
-
-.table{
+.t-table{
     width: 90%;
     font-size: 20px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    font-size: 20px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
 }
 
-.p{
+.t-table th{
+    font-size: 20px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+.t-table td{
+    font-size: 20px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+.t-tbody{
+    font-size: 20px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 5px;
+}
+
+.t-p{
     font-size: 20px;
     display: inline;
 }

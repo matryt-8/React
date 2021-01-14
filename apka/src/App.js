@@ -8,6 +8,7 @@ import EditMovie from "./Movies/EditMovie";
 import Screenings from "./Screenings/Screenings";
 import AddScreening from "./Screenings/AddScreening";
 import EditScreening from "./Screenings/EditScreening";
+import BuyTicket from "./Others/BuyTicket";
 import './Styles/App.css';
 
 axios.defaults.baseURL = "http://localhost:7777/";
@@ -20,6 +21,7 @@ class App extends Component{
     // bindowanie funkcji asynchronicznych
     this.addScreening = this.addScreening.bind(this);
     this.editScreening = this.editScreening.bind(this);
+    this.buyTicket = this.buyTicket.bind(this);
   }
 
   addMovie = (data) =>{
@@ -60,7 +62,6 @@ class App extends Component{
       "hour": data.hour,
       "movie": data.movie,
       "room": data.room,
-      "sold_tickets": 0,
       "free_tickets": 0,
       "taken_seats": []
     }
@@ -77,7 +78,6 @@ class App extends Component{
       "hour": data.hour,
       "movie": data.movie,
       "room": data.room,
-      "sold_tickets": screening.sold_tickets,
       "free_tickets": screening.free_tickets,
       "taken_seats": screening.taken_seats
     }
@@ -93,6 +93,22 @@ class App extends Component{
     .catch((error) => console.log(error));
   }
 
+  async buyTicket(screening,data){
+    var body = {
+      "id": screening.id,
+      "date": screening.date,
+      "hour": screening.hour,
+      "movie": screening.movie,
+      "room": screening.room,
+      "free_tickets": data.free_tickets,
+      "taken_seats": data.taken_seats
+    }
+
+    await axios.put("screenings/"+ body.id, body)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+  }
+
   render(){
     return (
       <div>
@@ -105,6 +121,7 @@ class App extends Component{
           <Route exact path="/screenings" render={() => <Screenings delete={this.deleteScreening}/>}/>
           <Route exact path="/addscreening" render={() => <AddScreening onSubmit={this.addScreening}/>}/>
           <Route exact path="/editscreening/:id" render={({match}) => <EditScreening id={parseInt(match.params.id)} onSubmit={this.editScreening}/>}/>
+          <Route exact path="/buyticket" render={() => <BuyTicket onSubmit={this.buyTicket}/>}/>
         </Router>
       </div>
     );

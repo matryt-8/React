@@ -47,7 +47,7 @@ class Screenings extends Component {
     return(
       <div className="App">
         <h1>Seanse</h1>
-        <table className="table">
+        <table className="t-table">
           <tbody>
           <tr>
             <th>Data</th>
@@ -73,9 +73,9 @@ class Screenings extends Component {
                 <td>{x.free_tickets}</td>
                 <td>{x.taken_seats.map((nr,key)=>{
                   if(nr === x.taken_seats[x.taken_seats.length-1])
-                    return(<p key={key} className="p">{nr}</p>)
+                    return(<p key={key} className="t-p">{nr}</p>)
                   else
-                    return(<p key={key} className="p">{nr +", "}</p>)
+                    return(<p key={key} className="t-p">{nr +", "}</p>)
                   })}
                 </td>
                 <td><a href={"/editscreening/"+x.id}>Edytuj</a></td>
