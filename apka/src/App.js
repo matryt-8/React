@@ -19,7 +19,7 @@ class App extends Component{
     };
   }
 
-  addMovie = (data) =>{
+  async addMovie (data){
     var body = {
       "id": 0,
       "title": data.title,
@@ -43,7 +43,7 @@ class App extends Component{
       .catch((error) => console.log(error));
   }
 
-  deleteMovie = (id) =>{
+  async deleteMovie (id){
 
     axios.delete("movies/"+id)
     .then((response) => console.log(response))
@@ -97,7 +97,7 @@ class App extends Component{
         <Router>
           <Route exact path="/" render={() => <h1 className="App">Home</h1>} />
           <Route exact path="/movies" render={() => <Movies deleteMovie={this.deleteMovie}/>}/>
-          <Route exact path="/editmovie/:id" render={({match}) => <EditMovie id={match.params.id} editMovie={this.editMovie}/>}/>
+          <Route exact path="/editmovie/:id" render={({match}) => <EditMovie id={parseInt(match.params.id)} editMovie={this.editMovie}/>}/>
           <Route exact path="/addmovie" render={() => <AddMovie addMovie={this.addMovie}/>}/>
           <Route exact path="/screenings" render={() => <Screenings delete={this.deleteScreening}/>}/>
           <Route exact path="/addscreening" render={() => <AddScreening onSubmit={this.addScreening}/>}/>
