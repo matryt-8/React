@@ -226,7 +226,7 @@ app.get('/screening/:id', (req, res) => {
             return;
         }
         var screeningJSON = JSON.stringify(screening);
-        console.log("GET /screenings/" + req.params.id);
+        console.log("GET /screening/" + req.params.id);
         res.send(screeningJSON);
     });
 });

@@ -1,0 +1,97 @@
+/* tabelka */
+
+.c-table{
+    width: 400px;
+    font-size: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.c-td-red input[type=checkbox] {
+    width:0px;
+    margin-right:18px;
+}
+
+.c-td-red input[type=checkbox]:disabled:before{
+    content: "";
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align:middle;
+    text-align: center;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    background-color:red;
+    font-size: 20px;
+}
+
+.c-td input[type=checkbox] {
+    width:0px;
+    margin-right:18px;
+}
+
+.c-td input[type=checkbox]:before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    vertical-align:middle;
+    text-align: center;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    background-color:#ccc;
+}
+
+.c-td input[type=checkbox]:checked:before {
+    background-color:Green;
+    font-size: 20px;
+}
+
+/* legenda */
+
+.c-legend_label{
+    width: 300px;
+    margin-left: 20px;
+    text-align: left;
+    display: inline-block;
+}
+
+.c-legend_input {
+    width:0px;
+    margin-right:18px;
+}
+
+.c-gray input[type=checkbox]:disabled:before{
+    content: "";
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    vertical-align:middle;
+    text-align: center;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    background-color:#ccc;
+    font-size: 15px;
+}
+
+.c-green input[type=checkbox]:disabled:before{
+    content: "";
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    vertical-align:middle;
+    text-align: center;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    background-color:green;
+    font-size: 15px;
+}
+
+.c-red input[type=checkbox]:disabled:before{
+    content: "";
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    vertical-align:middle;
+    text-align: center;
+    box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+    background-color:red;
+    font-size: 15px;
+}

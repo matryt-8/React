@@ -17,10 +17,11 @@ class Movies extends Component {
     this.getMovies();
   }
 
-   async getMovies () {
-     axios.get("/movies")
+    async getMovies () {
+      await axios.get("/movies")
       .then((response)=>{
         console.log("response",response.data);
+
         this.setState({
           MoviesList: response.data
         })
@@ -30,16 +31,18 @@ class Movies extends Component {
       })
   }
 
-  deleteClick = (id) => {
-      this.props.deleteMovie(id);
-     this.getMovies();
+    async deleteClick (id) {
+    
+    await this.props.deleteMovie(id).then(
+     window.location.reload());
+    
   }
 
   
 
 
   render(){
-    let movies = this.state.MoviesList;
+    let movies = this.state.MoviesList; ////
     return(
       <div className="App">
         <h1>Filmy</h1>

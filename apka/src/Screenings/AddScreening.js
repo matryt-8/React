@@ -11,12 +11,14 @@ class AddScreening extends Component {
         this.state = {
             redirect: false,
             date: new Date(null),
-            hour: new Date(null).getHours(),
+            hour: new Date(null),
             movie: 0,
             room: 0,
             RoomsList: [],
             MoviesList: []
         };
+        // bindowanie funkcji asynchronicznych
+        this.onClick = this.onClick.bind(this);
     }
 
     componentDidMount = () =>{
@@ -43,13 +45,24 @@ class AddScreening extends Component {
 
     validateInputs = () => {
         let flag = true;
-        if(document.getElementById("date").value === ''){
+        var date = document.getElementById("date").value;
+        if(date === ''){
             flag = false;
             document.getElementById("date-alert").innerHTML = "musisz podać datę";
         }
-        if(document.getElementById("hour").value === ''){
+        else if( !this.isDateOK(date) )
+        {
+            flag = false;
+            document.getElementById("date-alert").innerHTML = "data nie może odnosić się do przeszłości";
+        }
+        var hour = document.getElementById("hour").value;
+        if(hour === ''){
             flag = false;
             document.getElementById("hour-alert").innerHTML = "musisz podać godzinę";
+        }
+        else if( this.isDateToday(date) && !this.isHourOk(hour)){
+            flag = false;
+            document.getElementById("hour-alert").innerHTML = "data nie może odnosić się do przeszłości";
         }
         if(this.state.movie === 0){
             flag = false;
@@ -62,8 +75,52 @@ class AddScreening extends Component {
         return flag;
     }
 
-    onClick = () =>
+    isDateOK = (date) =>{
+        var selectedDate = new Date(date);
+        var currentDate = new Date();
+        if(selectedDate.getFullYear() < currentDate.getFullYear())
+            return false;
+        else if(selectedDate.getFullYear() === currentDate.getFullYear())
+        {
+            if(selectedDate.getMonth() < currentDate.getMonth())
+            {
+                return false;
+            }
+            else if(selectedDate.getMonth() === currentDate.getMonth())
+            {
+                if(selectedDate.getDay() < currentDate.getDay())
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    isDateToday = (date) =>
     {
+        var selectedDate = new Date(date);
+        var currentDate = new Date();
+        if(selectedDate.getFullYear() === currentDate.getFullYear() &&
+            selectedDate.getMonth() === currentDate.getMonth() &&
+            selectedDate.getDay() === currentDate.getDay())
+            return true;
+        return false;
+    }
+
+    isHourOk = (hour) =>{
+        var selectedHour = parseInt(hour.substring(0,2));
+        var selectedMinute = parseInt(hour.substring(3));
+        var currentHour = new Date().getHours();
+        var currentMinute = new Date().getMinutes();
+        if(selectedHour < currentHour)
+            return false;
+        if(selectedHour === currentHour && selectedMinute <= currentMinute)
+            return false;
+        return true;
+    }
+
+    async onClick() {
         if(this.validateInputs() === false)
         {
             return;
@@ -76,7 +133,7 @@ class AddScreening extends Component {
             room: parseInt(this.state.room)
         }
         console.log("data",data);
-        this.props.onSubmit(data);
+        await this.props.onSubmit(data);
         this.setState({
             redirect: true
         });
