@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "../Styles/Table.css";
 import "../Styles/Button.css";
+import "../Styles/App.css";
 import { Redirect } from "react-router-dom";
 //import {withRouter} from 'react-router-dom';
 axios.defaults.baseURL = "http://localhost:7777/";
@@ -78,8 +79,8 @@ class AddMovie extends Component {
         if (this.state.redirect!==true)
         return (
             <div>
-                <div>
-                    <table className="table">
+                <div className="App">
+                    <table className="t-table">
                         <tbody>
                             <tr>
                             <th>Tytuł</th>

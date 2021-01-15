@@ -46,7 +46,7 @@ class Movies extends Component {
     return(
       <div className="App">
         <h1>Filmy</h1>
-        <table className="table">
+        <table className="t-table">
           <tbody>
           <tr>
             <th>Tytuł</th>

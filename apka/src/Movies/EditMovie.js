@@ -93,8 +93,8 @@ class EditMovie extends Component {
         if (this.state.redirect!==true)
         return (
             <div>
-                <div>
-                    <table className="table">
+                <div className="App">
+                    <table className="t-table">
                         <tbody>
                             <tr>
                             <th>Tytuł</th>
