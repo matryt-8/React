@@ -17,7 +17,9 @@ class MoviesRank extends Component {
   }
 
   componentDidMount = () => {
-    //
+    this.setState({
+        date: this.props.date
+    })
   }
 
 

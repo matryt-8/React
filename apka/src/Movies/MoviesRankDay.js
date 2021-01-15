@@ -21,18 +21,33 @@ class MoviesRankDay extends Component {
   }
 
 
+  setDate = (event) => {
+    this.setState({
+      date: event.target.value
+    })
+  }
+
+  submit = () => {
+    if (this.state.date!=null)
+    this.setState({
+      redirect: true
+    })
+    else alert("Musisz wybrać datę")
+  }
+
+
   render(){
     if (this.state.redirect!==true)
     return(
       <div className="App">
         <h1>Wybierz dzień dla wygenerowania rankingu filmów</h1>
-        <input type="date"/>
-        <p> <button className="button">Przejdź do rankingu</button> </p>
+        <input type="date" required onChange={this.setDate}/>
+        <p> <button className="button" onClick={this.submit}>Przejdź do rankingu</button> </p>
       </div>
     )
     else
     return (
-      <Redirect to="/moviesrank"/>
+      <Redirect to={"/moviesrank/"+this.state.date}/>
     )
   }
 }
