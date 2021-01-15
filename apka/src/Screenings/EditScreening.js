@@ -98,7 +98,7 @@ class EditScreening extends Component {
             }
             else if(selectedDate.getMonth() === currentDate.getMonth())
             {
-                if(selectedDate.getDay() < currentDate.getDay())
+                if(selectedDate.getDate() < currentDate.getDate())
                 {
                     return false;
                 }
@@ -113,7 +113,7 @@ class EditScreening extends Component {
         var currentDate = new Date();
         if(selectedDate.getFullYear() === currentDate.getFullYear() &&
             selectedDate.getMonth() === currentDate.getMonth() &&
-            selectedDate.getDay() === currentDate.getDay())
+            selectedDate.getDate() === currentDate.getDate())
             return true;
         return false;
     }

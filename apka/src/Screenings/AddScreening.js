@@ -88,7 +88,7 @@ class AddScreening extends Component {
             }
             else if(selectedDate.getMonth() === currentDate.getMonth())
             {
-                if(selectedDate.getDay() < currentDate.getDay())
+                if(selectedDate.getDate() < currentDate.getDate())
                 {
                     return false;
                 }
@@ -103,7 +103,7 @@ class AddScreening extends Component {
         var currentDate = new Date();
         if(selectedDate.getFullYear() === currentDate.getFullYear() &&
             selectedDate.getMonth() === currentDate.getMonth() &&
-            selectedDate.getDay() === currentDate.getDay())
+            selectedDate.getDate() === currentDate.getDate())
             return true;
         return false;
     }
