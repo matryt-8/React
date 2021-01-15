@@ -11,7 +11,8 @@ import EditScreening from "./Screenings/EditScreening";
 import BuyTicket from "./Others/BuyTicket";
 import './Styles/App.css';
 import Home from "./Others/TodayScreenings";
-
+import MoviesRankDay from "./Movies/MoviesRankDay";
+//import MoviesRank from "./Movies/MoviesRank";
 axios.defaults.baseURL = "http://localhost:7777/";
 
 class App extends Component{
@@ -123,6 +124,7 @@ class App extends Component{
           <Route exact path="/addscreening" render={() => <AddScreening onSubmit={this.addScreening}/>}/>
           <Route exact path="/editscreening/:id" render={({match}) => <EditScreening id={parseInt(match.params.id)} onSubmit={this.editScreening}/>}/>
           <Route exact path="/buyticket" render={() => <BuyTicket onSubmit={this.buyTicket}/>}/>
+          <Route exact path="/choosedaytorank" render={()=> <MoviesRankDay />}/>
         </Router>
       </div>
     );

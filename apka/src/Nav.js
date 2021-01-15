@@ -24,7 +24,11 @@ class Nav extends Component {
         <a href="/buyticket">
             <button className="Nav-button">Kupowanie biletów</button>
         </a>
+        <a href="/choosedaytorank">
+            <button className="Nav-button">Rankingi popularności</button>
+        </a>
         </nav>
+        
       <hr className="Nav-hr"/>
       </div>
     );
