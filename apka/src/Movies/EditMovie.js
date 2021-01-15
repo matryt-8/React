@@ -119,7 +119,7 @@ class EditMovie extends Component {
                     </table>
                     
                     
-                    <button class="button button" onClick={this.editMovie}>Zatwierdź nowe dane filmu</button>
+                    <p><button class="button button" onClick={this.editMovie}>Zatwierdź nowe dane filmu</button></p>
                     
                 </div>
             </div>

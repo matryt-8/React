@@ -105,7 +105,7 @@ class AddMovie extends Component {
                     </table>
                     
                     
-                    <button class="button button" onClick={this.addMovie}>Zatwierdź dane nowego filmu</button>
+                    <p><button class="button button" onClick={this.addMovie}>Zatwierdź dane nowego filmu</button></p>
                     
                 </div>
             </div>
