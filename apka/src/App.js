@@ -123,7 +123,7 @@ class App extends Component{
           <Route exact path="/screenings" render={() => <Screenings delete={this.deleteScreening}/>}/>
           <Route exact path="/addscreening" render={() => <AddScreening onSubmit={this.addScreening}/>}/>
           <Route exact path="/editscreening/:id" render={({match}) => <EditScreening id={parseInt(match.params.id)} onSubmit={this.editScreening}/>}/>
-          <Route exact path="/buyticket" render={() => <BuyTicket onSubmit={this.buyTicket}/>}/>
+          <Route exact path="/buyticket/:id" render={({match}) => <BuyTicket id={parseInt(match.params.id)} onSubmit={this.buyTicket}/>}/>
           <Route exact path="/choosedaytorank" render={()=> <MoviesRankDay />}/>
           <Route exact path="/moviesrank/:date" render={(props)=> <MoviesRank date={props.match.params.date} />}/>
         </Router>

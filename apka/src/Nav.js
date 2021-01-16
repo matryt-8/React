@@ -21,9 +21,6 @@ class Nav extends Component {
         <a href="/screenings">
             <button className="Nav-button">Seanse</button>
         </a>
-        <a href="/buyticket">
-            <button className="Nav-button">Kupowanie biletów</button>
-        </a>
         <a href="/choosedaytorank">
             <button className="Nav-button">Rankingi popularności</button>
         </a>

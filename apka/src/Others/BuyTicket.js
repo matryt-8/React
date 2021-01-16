@@ -20,9 +20,9 @@ class BuyTicket extends Component {
     }
 
     async componentDidMount() {
-        //id = this.props.id
+        let id = this.props.id
         let room_id = 0;
-        await axios.get("/screening/1")
+        await axios.get("/screening/" + id)
             .then((response)=>{
                 //console.log("screening",response.data);
                 room_id = response.data.room;
