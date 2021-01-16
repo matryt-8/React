@@ -64,7 +64,7 @@ class App extends Component{
       "hour": data.hour,
       "movie": data.movie,
       "room": data.room,
-      "free_tickets": 0,
+      "free_tickets": data.free_tickets,
       "taken_seats": []
     }
 

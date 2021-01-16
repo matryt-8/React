@@ -125,12 +125,16 @@ class AddScreening extends Component {
         {
             return;
         }
-        
+        let room = parseInt(this.state.room);
+        let RoomsList = this.state.RoomsList;
+        let roomIndex = this.state.RoomsList.findIndex(r=>r.nr===room)
+        console.log(room+"a"+roomIndex)
         var data={
             date: this.state.date,
             hour: this.state.hour,
             movie: parseInt(this.state.movie),
-            room: parseInt(this.state.room)
+            room: room,
+            free_tickets: RoomsList[roomIndex].capacity
         }
         console.log("data",data);
         await this.props.onSubmit(data);

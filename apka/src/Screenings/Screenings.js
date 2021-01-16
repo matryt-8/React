@@ -54,7 +54,7 @@ class Screenings extends Component {
             <th>Godzina</th>
             <th>Film</th>
             <th>Sala</th>
-            <th>Ilość biletów</th>
+            <th>Dostępne bilety</th>
             <th>Zajęte miejsca</th>
             <th></th>
             <th></th>
