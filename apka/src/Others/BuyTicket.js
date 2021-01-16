@@ -128,21 +128,21 @@ class BuyTicket extends Component {
                 <table className="c-table">
                     <tbody>
                         <tr>
-                            <th></th>
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
-                            <th>9</th>
-                            <th>10</th>
+                            <th className="c-th"></th>
+                            <th className="c-th">1</th>
+                            <th className="c-th">2</th>
+                            <th className="c-th">3</th>
+                            <th className="c-th">4</th>
+                            <th className="c-th">5</th>
+                            <th className="c-th">6</th>
+                            <th className="c-th">7</th>
+                            <th className="c-th">8</th>
+                            <th className="c-th">9</th>
+                            <th className="c-th">10</th>
                         </tr>
                         {CinemaSeats.map((row)=>{
                             return(<tr key={row.row}>
-                                        <th>{row.row}</th>
+                                        <th className="c-th">{row.row}</th>
                                         {row.seats.map((seat,key)=>{
                                             // jezeli miejsce jest zarerwowane to na czerwono
                                             if( taken_seats.includes(parseInt((row.row).toString()+(seat).toString())) ){
