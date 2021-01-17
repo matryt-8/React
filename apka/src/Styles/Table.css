@@ -1,5 +1,5 @@
 .t-table{
-    background-color: white;
+    background-color: #5b94c2;
     width: 90%;
     font-size: 20px;
     text-align: center;
@@ -11,21 +11,7 @@
     padding: 5px;
 }
 
-.t-table th{
-    font-size: 20px;
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 5px;
-}
-
-.t-table td{
-    font-size: 20px;
-    border: 1px solid black;
-    border-collapse: collapse;
-    padding: 5px;
-}
-
-.t-tbody{
+.t-table th, .t-table td, .t-table tbody{
     font-size: 20px;
     border: 1px solid black;
     border-collapse: collapse;

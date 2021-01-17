@@ -18,6 +18,8 @@ class Screenings extends Component {
     console.log("componentDidMount");
     axios.get("/screenings")
       .then((response)=>{
+        let screenings = response.data;
+        screenings.sort(this.GetSortOrder("date"));
         this.setState({
           ScreeningsList: response.data
         })
@@ -36,6 +38,17 @@ class Screenings extends Component {
         console.log("error",error)
       })
   }
+
+  GetSortOrder = (prop) =>{    
+    return function(a, b) {    
+        if (a[prop] > b[prop]) {    
+            return 1;    
+        } else if (a[prop] < b[prop]) {    
+            return -1;    
+        }    
+        return 0;    
+    }    
+}  
 
   onDelete = (id) =>{
     this.props.delete(id);
@@ -79,7 +92,7 @@ class Screenings extends Component {
                   })}
                 </td>
                 <td><a href={"/editscreening/"+x.id}>Edytuj</a></td>
-                <td><a href={"/screenings"} onClick={this.onDelete.bind(this, x.id)}> Usuń</a></td>
+                <td><a href={"/screenings"} onClick={this.onDelete.bind(this, x.id)}><i className="delete-icon"/></a></td>
               </tr>
             )})
           }

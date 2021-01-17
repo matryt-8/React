@@ -3,12 +3,12 @@
 }
 
 h1{
-  color: white;
+  color:  rgb(198, 228, 255);
   font-size: 50px;
 }
 
 h2{
-color: white;
+  color:  rgb(198, 228, 255);
 }
 
 .App-button{
@@ -19,4 +19,23 @@ color: white;
   background-color: #1877f2;
   border: none;
   color: white;
+}
+
+a{
+  color: blue;
+}
+
+input{
+  background-color: #5b94c2;
+}
+
+select{
+  background-color: #5b94c2;
+}
+
+.delete-icon{
+  background: url(./deleteicon.ico);
+  height: 24px;
+  width: 24px;
+  display: block;
 }

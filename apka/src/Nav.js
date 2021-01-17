@@ -25,8 +25,6 @@ class Nav extends Component {
             <button className="Nav-button">Rankingi popularności</button>
         </a>
         </nav>
-        
-      <hr className="Nav-hr"/>
       </div>
     );
   }

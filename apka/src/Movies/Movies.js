@@ -72,7 +72,7 @@ class Movies extends Component {
           }
           </tbody>
         </table>
-        <button><a href={"/addmovie/"}>Dodaj</a></button>
+        <a href={"/addmovie/"}><button className="App-button">Dodaj</button></a>
       </div>
     );
   }

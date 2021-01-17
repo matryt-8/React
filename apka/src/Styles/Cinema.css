@@ -9,7 +9,7 @@
 }
 
 .c-th{
-    color: white;
+    color: rgb(198, 228, 255);;
 }
 
 .c-td-red input[type=checkbox] {
@@ -53,11 +53,12 @@
 /* legenda */
 
 .c-legend_label{
-    width: 300px;
+    width: 150px;
     margin-left: 20px;
-    text-align: left;
+    text-align: center;
     display: inline-block;
-    color: white;
+    border-radius: 10px;
+    background-color: rgb(198, 228, 255);;
 }
 
 .c-legend_input {
