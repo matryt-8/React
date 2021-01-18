@@ -38,11 +38,8 @@ class Movies extends Component {
     
   }
 
-  
-
-
   render(){
-    let movies = this.state.MoviesList; ////
+    let movies = this.state.MoviesList;
     return(
       <div className="App">
         <h1>Filmy</h1>
@@ -60,7 +57,7 @@ class Movies extends Component {
               <tr key={key}>
                 <td>{x.title}</td>
                 <td>{x.duration}</td>
-                <td>brak opisu</td>
+                <td>{x.description}</td>
                 <td>
                   <a href={"/editmovie/"+x.id}>Edytuj</a>
                 </td>

@@ -8,7 +8,9 @@ h1{
 }
 
 h2{
-  color:  rgb(198, 228, 255);
+  background-color: rgb(198, 228, 255);
+  width: 500px;
+  display: inline-block;
 }
 
 .App-button{

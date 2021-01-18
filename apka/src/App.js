@@ -30,7 +30,8 @@ class App extends Component{
     var body = {
       "id": 0,
       "title": data.title,
-      "duration": data.duration
+      "duration": data.duration,
+      "description": data.description
     }
 
     axios.post("movies", body)
@@ -42,7 +43,8 @@ class App extends Component{
     var body = {
       "id": data.id,
       "title": data.title,
-      "duration": data.duration
+      "duration": data.duration,
+      "description": data.description
     }
 
     axios.put("movies/" + body.id, body)
@@ -51,7 +53,6 @@ class App extends Component{
   }
 
   async deleteMovie (id){
-
     axios.delete("movies/"+id)
     .then((response) => console.log(response))
     .catch((error) => console.log(error));

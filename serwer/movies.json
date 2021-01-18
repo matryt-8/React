@@ -2,11 +2,13 @@
     {
         "id": 1,
         "title": "Spiderman",
-        "duration": 2.4
+        "duration": 2.4,
+        "description": "Film o człowieku, który został ugryziony przez pająka i dostał super mocy"
     },
     {
         "id": 2,
         "title": "Romeo i Julia",
-        "duration": 3
+        "duration": 3,
+        "description": "Romantyczna historia dwójki zakochanych osób kończąca się tragedią"
     }
 ]

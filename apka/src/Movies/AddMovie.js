@@ -35,13 +35,12 @@ class AddMovie extends Component {
             return;
         }
         let state = this.state;
-        state.title = String(state.title);//
-        state.duration = parseFloat(state.duration);//
+        state.title = String(state.title);
+        state.duration = parseFloat(state.duration);
+        state.description = String(state.description);
         //state.redirect = true;
         
         this.addMovieBeforeReload(state);
-        
-
     }
 
 
