@@ -26,7 +26,6 @@ class EditScreening extends Component {
     async componentDidMount () {
         await axios.get("/screening/"+this.props.id)
             .then((response)=>{
-                console.log("response",response.data);
                 this.setState({
                     screening: response.data,
                     date: response.data.date,

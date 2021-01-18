@@ -15,11 +15,10 @@ class Screenings extends Component {
   }
 
   componentDidMount = () => {
-    console.log("componentDidMount");
     axios.get("/screenings")
       .then((response)=>{
         let screenings = response.data;
-        screenings.sort(this.GetSortOrder("date"));
+        screenings.sort(this.GetSortedSreenings("date"));
         this.setState({
           ScreeningsList: response.data
         })
@@ -39,7 +38,7 @@ class Screenings extends Component {
       })
   }
 
-  GetSortOrder = (prop) =>{    
+  GetSortedSreenings = (prop) =>{    
     return function(a, b) {    
         if (a[prop] > b[prop]) {    
             return 1;    
