@@ -29,7 +29,7 @@ class EditMovie extends Component {
               id: id,
               title: response.data.title,
               duration: response.data.duration,
-              description: "brak" ////
+              description: response.data.description
             })
           })
           .catch((error)=>{
