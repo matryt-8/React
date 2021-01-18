@@ -3,6 +3,7 @@ import axios from "axios";
 import "../Styles/App.css";
 import "../Styles/Table.css";
 import "../Styles/RankButton.css";
+import PropTypes, {  } from 'prop-types';
 
 axios.defaults.baseURL = "http://localhost:7777/";
 
@@ -111,3 +112,6 @@ class MoviesRank extends Component {
   }
 }
 export default MoviesRank;
+MoviesRank.propTypes = {
+  date: PropTypes.string.isRequired
+};
