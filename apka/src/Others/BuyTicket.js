@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
 import axios from "axios";
 import "../Styles/App.css";
 import "../Styles/Cinema.css";
@@ -167,3 +168,7 @@ class BuyTicket extends Component {
     }
 }
 export default BuyTicket;
+
+BuyTicket.propTypes ={
+    id: PropTypes.number.isRequired
+}
