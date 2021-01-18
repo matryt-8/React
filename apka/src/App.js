@@ -24,9 +24,11 @@ class App extends Component{
     this.addScreening = this.addScreening.bind(this);
     this.editScreening = this.editScreening.bind(this);
     this.buyTicket = this.buyTicket.bind(this);
+    this.addMovie = this.addMovie.bind(this);
+    this.editMovie = this.editMovie.bind(this);
   }
 
-   addMovie = (data)=>{
+  async addMovie (data){
     var body = {
       "id": 0,
       "title": data.title,
@@ -34,12 +36,12 @@ class App extends Component{
       "description": data.description
     }
 
-    axios.post("movies", body)
+    await axios.post("movies", body)
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
   }
 
-   editMovie = (data) =>{
+  async editMovie (data) {
     var body = {
       "id": data.id,
       "title": data.title,
@@ -47,7 +49,7 @@ class App extends Component{
       "description": data.description
     }
 
-    axios.put("movies/" + body.id, body)
+    await axios.put("movies/" + body.id, body)
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
   }

@@ -16,6 +16,7 @@ class EditMovie extends Component {
             description: "",
             redirect: false
         }
+        this.editMovieOnServer = this.editMovieOnServer.bind(this);
     }
 
     componentDidMount = () => {

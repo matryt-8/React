@@ -11,6 +11,7 @@ class Movies extends Component {
     this.state = {
       MoviesList: []
     };
+    this.getMovies = this.getMovies.bind(this);
   }
 
   componentDidMount = () => {
@@ -62,7 +63,7 @@ class Movies extends Component {
                   <a href={"/editmovie/"+x.id}>Edytuj</a>
                 </td>
                 <td>
-                <button onClick={this.deleteClick.bind(this, x.id)}>Usuń</button>
+                  <i className="delete-icon" onClick={this.deleteClick.bind(this, x.id)}/>
                 </td>
               </tr>
             )})

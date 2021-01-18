@@ -14,6 +14,7 @@ class AddMovie extends Component {
             description: "",
             redirect: false
         }
+        this.addMovieBeforeReload = this.addMovieBeforeReload.bind(this);
     }
 
     addMovie = () => {
