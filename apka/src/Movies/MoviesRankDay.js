@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "../Styles/App.css";
 import "../Styles/Table.css";
-import "../Styles/Button.css";
+import "../Styles/RankButton.css";
 import { Redirect } from "react-router-dom";
 
 axios.defaults.baseURL = "http://localhost:7777/";

@@ -1,7 +1,7 @@
 .button{
-    background-color: white;
+    background-color: #5b94c2;
     color: black;
-    border-color: chartreuse;
+    border-color: burlywood;
     border-width: 5px;
     transition-duration: 1s;
     cursor: pointer;

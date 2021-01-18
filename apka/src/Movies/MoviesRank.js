@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import "../Styles/App.css";
 import "../Styles/Table.css";
-import "../Styles/Button.css";
+import "../Styles/RankButton.css";
 
 axios.defaults.baseURL = "http://localhost:7777/";
 
@@ -11,59 +11,18 @@ class MoviesRank extends Component {
     super(props);
     this.state = {
       date: "",
-      MoviesList: [],
-      ScreeningsList:[]
+      SortedNewMoviesList: []
     };
   }
 
-  componentDidMount = () => {
+  async componentDidMount () {
     this.setState({
         date: this.props.date
     })
-    this.getMovies();
-    this.getScreenings();
-  }
-
-  getMovies() {
-    axios.get("/movies")
-    .then((response)=>{
-      console.log("response", response.data);
-      this.setState({
-          MoviesList: response.data
-      })
-    })
-    .catch((error)=>{
-      console.log("error", error)
-    })
-  }
-
-  getScreenings() {
-    axios.get("/screenings")
-    .then((response)=>{
-        console.log("response", response.data);
-        this.setState({
-            ScreeningsList: response.data
-        })
-    })
-    .catch((error)=>{
-        console.log("error", error);
-    })
-
-  }
-
-
-  render(){
-    let MoviesList = this.state.MoviesList;
-    let ScreeningsList = this.state.ScreeningsList;
-    for (let i = 0; i<ScreeningsList.length;i++)
-    {
-      console.log(typeof(ScreeningsList[i].date))
-      if (ScreeningsList[i].date!==this.state.date)
-      {
-        ScreeningsList.splice(i,1);
-      }
-    }
-    console.log(ScreeningsList);
+    let MoviesList = await this.getMovies();
+    let ScreeningsList = await this.getScreenings();
+    let date = this.state.date;
+    ScreeningsList = ScreeningsList.filter(function(screening) {return screening.date===date});
     
     MoviesList.forEach(movie => {
         movie.Active = "soldTickets";
@@ -73,22 +32,48 @@ class MoviesRank extends Component {
             
             if (movie.id === screening.movie)
             {
-                console.log(movie.title+"ZNALEZIONY")
-                console.log(screening.taken_seats.length+"DoDodania")
                 movie.soldTickets += screening.taken_seats.length;
             }
 
             
         })
-        console.log(movie.soldTickets+"Ostatecznie")
     })
-    
-    console.log(MoviesList)
-
     let SortedNewMoviesList = MoviesList.sort(({soldTickets: a}, {soldTickets:b})=>b-a);
-    console.log(SortedNewMoviesList)
+    SortedNewMoviesList = SortedNewMoviesList.filter( movie=>movie.soldTickets!==0);
 
-    
+    this.setState({
+      SortedNewMoviesList: SortedNewMoviesList
+    })
+  }
+
+  async getMovies() {
+    let movies = [];
+    await axios.get("/movies")
+    .then((response)=>{
+      movies = response.data;
+    })
+    .catch((error)=>{
+      console.log("error", error)
+    })
+    return movies; 
+  }
+
+  async getScreenings() {
+    let screenings = [];
+    await axios.get("/screenings")
+    .then((response)=>{
+        screenings = response.data;
+    })
+    .catch((error)=>{
+        console.log("error", error);
+    })
+    return screenings;
+  }
+
+
+  render(){
+    let SortedNewMoviesList = this.state.SortedNewMoviesList;
+    if (SortedNewMoviesList.length!==0)
     return(
       <div className="App">
         <h1>Ranking filmów dla {this.state.date}</h1>
@@ -114,6 +99,15 @@ class MoviesRank extends Component {
         </table>
       </div>
     )
+    else
+    {
+      return(
+        <div className="App">
+          <h2>Nie zakupiono jeszcze biletów na żaden seans dnia {this.state.date}</h2>
+        </div>
+      )
+
+    }
   }
 }
 export default MoviesRank;

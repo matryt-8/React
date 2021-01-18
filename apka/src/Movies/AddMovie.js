@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "../Styles/Table.css";
-import "../Styles/Button.css";
 import "../Styles/App.css";
 import { Redirect } from "react-router-dom";
 //import {withRouter} from 'react-router-dom';
@@ -104,7 +103,7 @@ class AddMovie extends Component {
                     </table>
                     
                     
-                    <p><button class="button button" onClick={this.addMovie}>Zatwierdź dane nowego filmu</button></p>
+                    <p><button className="App-button" onClick={this.addMovie}>Zatwierdź dane nowego filmu</button></p>
                     
                 </div>
             </div>

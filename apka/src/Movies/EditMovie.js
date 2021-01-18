@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "../Styles/Table.css";
-import "../Styles/Button.css";
 import PropTypes, {  } from 'prop-types';
 import { Redirect } from "react-router-dom";
 
@@ -120,7 +119,7 @@ class EditMovie extends Component {
                     </table>
                     
                     
-                    <p><button class="button button" onClick={this.editMovie}>Zatwierdź nowe dane filmu</button></p>
+                    <p><button className="App-button" onClick={this.editMovie}>Zatwierdź nowe dane filmu</button></p>
                     
                 </div>
             </div>
